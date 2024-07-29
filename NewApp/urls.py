@@ -3,14 +3,10 @@ from NewApp import views
 
 
 urlpatterns = [
-    path('', views.inicio, name='start'),
-    path('Company/', views.guardarEmpresa, name='save_company'),
-    path('Company/register/', views.registrarEmpresa, name='register_company'),
-    path('Company/search/', views.SujetoEmpresa, name='search_company'),
-    path('Owner/', views.guardarDueño, name='save_owner'),
-    path('Owner/register/', views.registrarDueño, name='register_owner'),
-    path('Location/', views.guardarUbicacion, name='save_location' ),
-    path('Location/register', views.registrarUbicacion, name='register_location'),
-    path('Contact/', views.guardarContacto, name='save_contact'),
-    path('Contact/register', views.registrarContacto, name='register_location'),
+    path('', views.inicio, name='inicio'),
+    path('registrar-empresa/', views.registrar_empresa, name='registrar_empresa'),
+    path('registrar-formulario/', views.registrar_formulario, name='registrar_formulario'),
+    path('registrar-ubicacion/', views.registrar_ubicacion, name='registrar_ubicacion'),
+    path('registrar-contacto/', views.registrar_contacto, name='registrar_contacto'),
+    path('fin/', views.fin, name='fin'),  # Ruta para la vista 'fin'
 ]

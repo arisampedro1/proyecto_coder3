@@ -1,0 +1,36 @@
+{% extends 'NewApp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src=" {% static 'NewApp/assets/img/01.jpeg' %} " alt="..." /></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">¡Contanos de vos!</h2>
+                    <p>Nos interesa saber sobre tu empresa para luego tener la mejor forma de asersorarte.<br><br>
+                        Solicitamos que completes los campos indicados.
+                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form action="/registrar-empresa/" method="POST">
+    {% csrf_token %}
+    <p>razon_social: <input type="text" name="razon social"></p>
+    <p>cuil: <input type="text" name="cuil"></p>
+    <p>nombre_de_fantasia: <input type="text" name="nombre de fantasia"></p>
+    <p>actividad_comercial: <input type="text" name="actividad comercial"></p>
+
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock main %}

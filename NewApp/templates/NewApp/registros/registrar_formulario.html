@@ -1,0 +1,33 @@
+{% extends 'NewApp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src=" {% static 'NewApp/assets/img/04.jpg' %} " alt="..." /></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">Registrarme</h2>
+                    <p>Nos encantaría tener la oportunidad de trabajar juntos.<br><br>
+                       Solicitamos que completes los campos para que empecemos a conocernos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<form action="/registrar-formulario/" method="POST">
+    {% csrf_token %}
+    <p>Nombre: <input type="text" name="nombre"></p>
+    <p>Apellido: <input type="text" name="apellido"></p>
+
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock main %}

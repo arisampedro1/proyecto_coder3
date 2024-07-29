@@ -1,0 +1,36 @@
+{% extends 'NewApp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src=" {% static 'NewApp/assets/img/06.jpg' %} " alt="..." /></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">¿De dónde sos?</h2>
+                        <p>Nosotros nos ubicamos en la localidad de Los Hornos, ciudad de La Plata, sin embargo trabajamos con envíos en todo el país.<br><br>
+                            Solicitamos información de tu locación para continuar con el registro.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form action="/registrar-ubicacion/" method="POST">
+    {% csrf_token %}
+    <p>direccion: <input type="text" name="direccion"></p>
+    <p>localidad: <input type="text" name="localidad"></p>
+    <p>ciudad: <input type="text" name="ciudad"></p>
+    <p>pais: <input type="text" name="pais"></p>
+
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock main %}

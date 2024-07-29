@@ -1,0 +1,20 @@
+{% extends 'NewApp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<section>
+    <div class="col-lg-6 order-lg-1">
+        <div class="p-5">
+            <h2 class="display-4">¡Registrado Correctamente!</h2>
+            <p>Pronto nos pondremos en contacto con vos.</p>
+        </div>
+    </div> 
+</section>
+
+<form action="{% url 'inicio' %}" method="GET">
+    {% csrf_token %}
+    <input type="submit" value="Volver">
+</form>
+
+{% endblock main %}

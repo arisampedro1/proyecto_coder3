@@ -1,72 +1,71 @@
 from django.shortcuts import render, redirect
 from .models import Ubicacion,Contacto,Empresa,Dueño
 from NewApp.forms import UbicacionForm, ContactoForm, EmpresaForm, DueñoForm, SujetoForm
+from django.contrib import messages
 
 def inicio(request):
-    return render(request, "NewApp/inicio.html")
+    return render (request, "NewApp/inicio.html")
 
-def guardarEmpresa(request):
-    empresas = Empresa.objects.all()
-    return render(request, 'NewApp/guardarEmpresa.html', {'empresa': empresas})
+def registrar_formulario(request):
 
-def registrarEmpresa(request):
     if request.method == 'POST':
-        form = EmpresaForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('guardarEmpresa')
-    else:
-        form = EmpresaForm()
-    return render(request, 'NewApp/registro_de_empresa.html', {'form': form})
 
-def SujetoEmpresa(request):
-    form = SujetoForm()
-    sujetos = []
-    if request.method == 'GET':
-        form = SujetoForm(request.GET)
-        if form.is_valid():
-            nombre = form.cleaned_data['nombre']
-            empresa = empresa.objects.filter(titulo__icontains=nombre)
-    return render(request, 'NewApp/SujetoEmpresa.html', {'form': form, 'Sujeto': sujetos})
+        dueño = Dueño(nombre=request.POST['nombre'],apellido=request.POST['apellido'])
+        dueño.save()
 
-def guardarDueño(request):
-    dueños = Dueño.objects.all()
-    return render(request, 'NewApp/guardarDueño.html', {'dueño': dueños})
+        return render(request, "NewApp/registros/registrar_empresa.html")
 
-def registrarDueño(request):
+    return render(request,"NewApp/registros/registrar_formulario.html")
+def registrar_empresa(request):
     if request.method == 'POST':
-        form = DueñoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('guardarDueño')
-    else:
-        form = DueñoForm()
-    return render(request, 'NewApp/registrarDueño.html', {'form': form})
+        empresa = Empresa(
+            razon_social=request.POST['razon social'],
+            cuil=request.POST['cuil'],
+            nombre_de_fantasia=request.POST['nombre de fantasia'],
+            actividad_comercial=request.POST['actividad comercial']
+        )
+        empresa.save()
+        messages.success(request, 'Empresa registrada exitosamente.')
+        return redirect('registrar_ubicacion') 
 
-def guardarUbicacion(request):
-    ubicaciones = Ubicacion.objects.all()
-    return render(request, 'NewApp/guardarUbicacion.html', {'ubicacion': ubicaciones})
+    return render(request, "NewApp/registros/registrar_empresa.html")
 
-def registrarUbicacion(request):
+def registrar_ubicacion(request):
     if request.method == 'POST':
-        form = UbicacionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('guardarUbicacion')
-    else:
-        form = UbicacionForm()
-    return render(request, 'NewApp/registrarUbicacion.html', {'form': form})
+        ubi = Ubicacion(
+            direccion=request.POST['direccion'],
+            localidad=request.POST['localidad'],
+            ciudad=request.POST['ciudad'],
+            pais=request.POST['pais']
+        )
+        ubi.save()
+        messages.success(request, 'Ubicación registrada exitosamente.')
+        return redirect('registrar_contacto') 
 
-def guardarContacto(request):
-    contactar = Contacto.objects.all()
-    return render(request, 'NewApp/guardarContacto.html', {'contactar': contactar})
+    return render(request, "NewApp/registros/registrar_ubicacion.html")
 
-def registrarContacto(request):
+def registrar_contacto(request):
     if request.method == 'POST':
-        form = ContactoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('guardarContacto')
-    else:
-        form = ContactoForm()
-    return render(request, 'NewApp/registrarContacto.html', {'form': form})
+        tel = request.POST.get('Tel', '')
+        email = request.POST.get('email', '')
+        tel_alternativo = request.POST.get('Tel_alternativo', '')
+
+        print(f"Tel: {tel}, Email: {email}, Tel_alternativo: {tel_alternativo}")
+        try:
+            cont = Contacto(
+                Tel=tel,
+                email=email,
+                Tel_alternativo=tel_alternativo
+            )
+            cont.save()
+            messages.success(request, 'Contacto registrado exitosamente.')
+            print("Redirigiendo a la página de fin...")
+            return redirect('fin')  # Redirige usando el nombre de la vista 'fin'
+        except ValueError as e:
+            messages.error(request, f"Error al guardar el contacto: {e}")
+            return render(request, "NewApp/registros/registrar_contacto.html")
+
+    return render(request, "NewApp/registros/registrar_contacto.html")
+
+def fin(request):
+    return render(request, "NewApp/fin.html")

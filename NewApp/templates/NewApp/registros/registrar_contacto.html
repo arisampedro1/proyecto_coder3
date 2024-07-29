@@ -1,0 +1,33 @@
+{% extends 'NewApp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src=" {% static 'NewApp/assets/img/07.jpg' %} " alt="..." /></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">¡Ya casi terminamos!</h2>
+                    <p>Solo nos queda registrar la forma en la que te podemos contactar. Por favor, complete los siguientes campos:
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form action="/registrar-contacto/" method="POST">
+    {% csrf_token %}
+    <p>Tel: <input type="text" name="Tel"></p>
+    <p>email: <input type="text" name="email"></p>
+    <p>Tel_alternativo: <input type="text" name="Tel alternativo"></p>
+
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock main %}
