@@ -8,5 +8,5 @@ urlpatterns = [
     path('registrar-formulario/', views.registrar_formulario, name='registrar_formulario'),
     path('registrar-ubicacion/', views.registrar_ubicacion, name='registrar_ubicacion'),
     path('registrar-contacto/', views.registrar_contacto, name='registrar_contacto'),
-    path('fin/', views.fin, name='fin'),  # Ruta para la vista 'fin'
+    path('fin/', views.fin, name='fin'), 
 ]
