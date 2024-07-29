@@ -30,8 +30,7 @@ class Ubicacion(models.Model):
 class Contacto(models.Model):
     Tel = models.IntegerField()
     email = models.CharField(max_length=200)
-    Tel_alternativo = models.IntegerField()
-
+    Tel_alternativo = models.CharField(max_length=200)
     def __str__(self):
         return f"{self.email}"
     

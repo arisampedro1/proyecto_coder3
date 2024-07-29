@@ -37,6 +37,3 @@ class UbicacionForm(forms.ModelForm):
         model = Ubicacion
         fields = ['direccion', 'localidad', 'ciudad', 'pais']
 
-class SujetoForm(forms.Form):
-    nombre = forms.CharField(max_length=100, required=False)
-

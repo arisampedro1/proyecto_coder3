@@ -9,4 +9,5 @@ urlpatterns = [
     path('registrar-ubicacion/', views.registrar_ubicacion, name='registrar_ubicacion'),
     path('registrar-contacto/', views.registrar_contacto, name='registrar_contacto'),
     path('fin/', views.fin, name='fin'), 
+    # path('form-con-api/', views.form_con_api, name="FormConApi"),
 ]

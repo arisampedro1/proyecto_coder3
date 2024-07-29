@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Ubicacion,Contacto,Empresa,Dueño
-from NewApp.forms import UbicacionForm, ContactoForm, EmpresaForm, DueñoForm, SujetoForm
+from NewApp.forms import UbicacionForm, ContactoForm, EmpresaForm, DueñoForm
 from django.contrib import messages
 
 def inicio(request):
@@ -60,7 +60,7 @@ def registrar_contacto(request):
             cont.save()
             messages.success(request, 'Contacto registrado exitosamente.')
             print("Redirigiendo a la página de fin...")
-            return redirect('fin')  # Redirige usando el nombre de la vista 'fin'
+            return redirect("fin")  
         except ValueError as e:
             messages.error(request, f"Error al guardar el contacto: {e}")
             return render(request, "NewApp/registros/registrar_contacto.html")
@@ -68,4 +68,20 @@ def registrar_contacto(request):
     return render(request, "NewApp/registros/registrar_contacto.html")
 
 def fin(request):
-    return render(request, "NewApp/fin.html")
+    return render(request, "NewApp/registros/fin.html")
+
+# def form_con_api(request):
+#     if request.method == "POST":
+#         mi_formulario = CursoFormulario(request.POST) # Aqui me llega la informacion del html
+#         # print(miFormulario)
+#         if mi_formulario.is_valid():
+#             informacion = mi_formulario.cleaned_data
+            
+#             curso = Curso(nombre=informacion["curso"], camada=informacion["camada"])
+#             curso.save()
+
+#             return render(request, "AppCoder/index.html")
+#     else:
+#         mi_formulario = CursoFormulario()
+
+#     return render(request, "AppCoder/form_con_api.html", {"mi_formulario": mi_formulario})
