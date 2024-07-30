@@ -3,72 +3,93 @@
 {% load static %}
 
 {% block main %}
+<section>
+    <div class="container">
+        <h2>Busca las Empresas ya registradas.</h2>
+        <form method="get" action="{% url 'buscar_empresas' %}">
+            <input type="text" name="q" placeholder="Buscar por nombre de empresa" value="{{ query }}">
+            <input type="submit" value="Buscar">
+        </form>
+        
+        {% if query %}
+            <ul>
+                {% if empresas %}
+                    {% for empresa in empresas %}
+                        <li>{{ empresa.nombre_de_fantasia }} - {{ empresa.razon_social }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>No se encontraron empresas.</li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</section>
 
 <section id="scroll">
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="img-fluid rounded-circle" src=" {% static 'NewApp/assets/img/05.jpg' %} " alt="..." /></div>
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'NewApp/assets/img/05.jpg' %}" alt="..." /></div>
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
                     <h2 class="display-4">Descartes</h2>
-                    <p>Nos ubicamos en la localidad de Los Hornos, La Plata.
+                    <p>Nos ubicamos en la localidad de Los Hornos, La Plata.</p>
+                    <ul>
                         <li>Nos enorgullece ofrecer una amplia variedad de productos de alta calidad para satisfacer todas tus necesidades, ya sea para tu hogar, oficina o eventos especiales. Con años de experiencia en el sector, nos hemos consolidado como una referencia en el mercado gracias a nuestro compromiso con la calidad, el servicio al cliente y la innovación.</li>
                         <li>Nuestra misión es proporcionar a nuestros clientes productos excepcionales que faciliten su día a día, brindándoles soluciones prácticas y accesibles. Nos dedicamos a mantener un inventario actualizado y variado, asegurándonos de que siempre encuentres lo que necesitas.</li>
-                    </p>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <section>
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6">
-                <div class="p-5"><img class="img-fluid rounded-circle" src=" {% static 'NewApp/assets/img/02.jpeg' %} " alt="..." /></div>
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'NewApp/assets/img/02.jpeg' %}" alt="..." /></div>
             </div>
             <div class="col-lg-6">
                 <div class="p-5">
                     <h2 class="display-4">Descartables</h2>
-                    <p>¡Generamos nuestra propia marca de productos descartables y garantizamos su total eficiencia!
-                        <ul>
-                            <li>Rollos de Film varias medidas marca Descartes.</li>
-                            <li>Rollos de aluminio.</li>
-                            <li>Bandejas de plástico, descartables.</li>
-                            <li>Bandejas de telgopor.</li>
-                            <li>Vasos descartables.</li>
-                            <li>Cubiertos descartables</li>
-                            <li>¡¡Y más!!</li>
-                    </p>
+                    <p>¡Generamos nuestra propia marca de productos descartables y garantizamos su total eficiencia!</p>
+                    <ul>
+                        <li>Rollos de Film varias medidas marca Descartes.</li>
+                        <li>Rollos de aluminio.</li>
+                        <li>Bandejas de plástico, descartables.</li>
+                        <li>Bandejas de telgopor.</li>
+                        <li>Vasos descartables.</li>
+                        <li>Cubiertos descartables</li>
+                        <li>¡¡Y más!!</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Content section 3-->
+
 <section>
     <div class="container px-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="img-fluid rounded-circle" src=" {% static 'NewApp/assets/img/03.jpeg' %} " alt="..." /></div>
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'NewApp/assets/img/03.jpeg' %}" alt="..." /></div>
             </div>
             <div class="col-lg-6 order-lg-1">
                 <div class="p-5">
                     <h2 class="display-4">Artículos de Librería</h2>
-                    <p>Venta mayorista y minorista de artículos de librería. Los mejores productos para:
-                        <ul>
-                            <li>Artística.</li>
-                            <li>Escolares.</li>
-                            <li>Regalos.</li>
-                            <li>Embalaje.</li>
-                            <li>Papelería.</li>
-                    </p>
+                    <p>Venta mayorista y minorista de artículos de librería. Los mejores productos para:</p>
+                    <ul>
+                        <li>Artística.</li>
+                        <li>Escolares.</li>
+                        <li>Regalos.</li>
+                        <li>Embalaje.</li>
+                        <li>Papelería.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-{% endblock main %}
+{% endblock %}

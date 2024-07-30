@@ -1,0 +1,15 @@
+{% extends 'NewApp/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+
+
+{% for emp in empresas %}
+    <li>razon_social: {{ emp.razon_social }} | nombre_de_fantasia: {{ emp.nombre_de_fantasia }}</li>
+{% endfor %}
+
+
+{% endblock main %}

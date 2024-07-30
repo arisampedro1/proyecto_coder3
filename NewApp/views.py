@@ -70,18 +70,9 @@ def registrar_contacto(request):
 def fin(request):
     return render(request, "NewApp/registros/fin.html")
 
-# def form_con_api(request):
-#     if request.method == "POST":
-#         mi_formulario = CursoFormulario(request.POST) # Aqui me llega la informacion del html
-#         # print(miFormulario)
-#         if mi_formulario.is_valid():
-#             informacion = mi_formulario.cleaned_data
-            
-#             curso = Curso(nombre=informacion["curso"], camada=informacion["camada"])
-#             curso.save()
-
-#             return render(request, "AppCoder/index.html")
-#     else:
-#         mi_formulario = CursoFormulario()
-
-#     return render(request, "AppCoder/form_con_api.html", {"mi_formulario": mi_formulario})
+def buscar_empresas(request):
+    query = request.GET.get('q', '')
+    empresas = []
+    if query:
+        empresas = Empresa.objects.filter(nombre_de_fantasia__icontains=query)
+    return render(request, "NewApp/inicio.html", {'empresas': empresas, 'query': query})
