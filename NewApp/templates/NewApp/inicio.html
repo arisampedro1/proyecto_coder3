@@ -7,7 +7,7 @@
     <div class="container">
         <h2>Busca las Empresas ya registradas.</h2>
         <form method="get" action="{% url 'buscar_empresas' %}">
-            <input type="text" name="q" placeholder="Buscar por nombre de empresa" value="{{ query }}">
+            <input type="text" name="q" placeholder="Nombre de empresa" value="{{ query }}">
             <input type="submit" value="Buscar">
         </form>
         

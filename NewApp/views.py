@@ -16,6 +16,7 @@ def registrar_formulario(request):
         return render(request, "NewApp/registros/registrar_empresa.html")
 
     return render(request,"NewApp/registros/registrar_formulario.html")
+
 def registrar_empresa(request):
     if request.method == 'POST':
         empresa = Empresa(
